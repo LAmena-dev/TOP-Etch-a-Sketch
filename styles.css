@@ -1,0 +1,28 @@
+/* Etch-a-sketch stylesheet */
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: gray;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  /* max-width: 672px;
+  max-height: 672px; */
+  gap: 2px;
+  border: 5px black solid;
+}
+
+.container > div:hover {
+  background-color: yellow;
+}

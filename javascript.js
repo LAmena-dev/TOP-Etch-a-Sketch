@@ -1,28 +1,50 @@
 // etch-a-sketch script
 
-let defSquareSize = 40;
-let num = prompt("Number of squares:");
-let numOfSquares = num * num;
-let squareDimen = num * defSquareSize + num * 2;
-const generator = document.querySelector(".generator");
-const container = document.querySelector(".container");
-container.setAttribute(
-  "style",
-  `width: ${squareDimen}px; height: ${squareDimen}px;`
-);
+function gridGenerator(squareNum) {
+  squareSide = squareDimen / squareNum;
 
-for (let i = 0; i < numOfSquares; i++) {
-  const square = document.createElement("div");
-  square.classList.add("square");
-  square.textContent = i + 1;
-  square.setAttribute(
-    "style",
-    `display: flex; flex: 1 0 none; justify-content: center; align-items: center; background-color: rgb(85, 95, 140); color: white; width: ${defSquareSize}px; height: ${defSquareSize}px; margin: 0; padding: 0`
-  );
+  for (let i = 0; i < squareNum ** 2; i++) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+    square.setAttribute(
+      "style",
+      `width: ${squareSide}px; height: ${squareSide}px;`
+    );
 
-  square.addEventListener("mouseenter", () => {
-    square.setAttribute("data-hovered", "true");
-  });
+    let randomR = Math.floor(Math.random() * 255);
+    let randomG = Math.floor(Math.random() * 255);
+    let randomB = Math.floor(Math.random() * 255);
+    square.style.backgroundColor =
+      "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+    square.addEventListener("mouseover", () => {
+      square.style.opacity = Number(square.style.opacity) + 0.2;
+    });
+    container.appendChild(square);
+  }
 
-  container.appendChild(square);
+  return;
 }
+
+const container = document.querySelector(".container");
+
+let squareDimen = 800;
+let defSide = 16;
+
+gridGenerator(defSide);
+
+const generator = document.querySelector(".generator");
+
+generator.addEventListener("click", () => {
+  gridNum = parseInt(prompt("Number of squares per side?:"));
+
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  if (gridNum > 64) {
+    alert("Input cannot be more than 64!");
+    gridNum = 64;
+  }
+
+  gridGenerator(gridNum);
+});

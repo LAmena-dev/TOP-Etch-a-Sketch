@@ -8,11 +8,20 @@ body {
   height: 100vh;
 }
 
-.generator {
+button {
+  flex-shrink: 0;
   font-size: 24px;
   font-weight: bold;
   padding: 5px 30px;
   margin: 15px 0;
+}
+
+.buttons {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  margin: 100px;
 }
 
 .container {

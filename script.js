@@ -11,11 +11,7 @@ function gridGenerator(squareNum) {
       `width: ${squareSide}px; height: ${squareSide}px;`
     );
 
-    let randomR = Math.floor(Math.random() * 255);
-    let randomG = Math.floor(Math.random() * 255);
-    let randomB = Math.floor(Math.random() * 255);
-    square.style.backgroundColor =
-      "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+    square.style.backgroundColor = colorSet();
     square.addEventListener("mouseover", () => {
       square.style.opacity = Number(square.style.opacity) + 0.2;
     });
@@ -29,13 +25,18 @@ const container = document.querySelector(".container");
 
 let squareDimen = 800;
 let defSide = 16;
-
 gridGenerator(defSide);
 
-const generator = document.querySelector(".generator");
+function colorSet() {
+  let randomR = Math.floor(Math.random() * 255);
+  let randomG = Math.floor(Math.random() * 255);
+  let randomB = Math.floor(Math.random() * 255);
+  return "rgb(" + randomR + "," + randomG + "," + randomB + ")";
+}
 
+const generator = document.querySelector(".generator");
 generator.addEventListener("click", () => {
-  gridNum = parseInt(prompt("Number of squares per side?:"));
+  gridNum = parseInt(prompt("Number of squares per side?:") || 16);
 
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -47,4 +48,13 @@ generator.addEventListener("click", () => {
   }
 
   gridGenerator(gridNum);
+});
+
+const reset = document.querySelector(".reset");
+reset.addEventListener("click", () => {
+  const squares = document.querySelectorAll(".square");
+  squares.forEach((square) => {
+    square.style.backgroundColor = colorSet();
+    square.style.opacity = 0;
+  });
 });

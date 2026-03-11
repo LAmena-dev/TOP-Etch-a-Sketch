@@ -1,5 +1,5 @@
-# Etch-a-Sketch
-A JavaScript project emulating an Etch-a-Sketch using functions, loops, and the Math module.
+# Etch A Sketch
+A [JavaScript project emulating an Etch-a-Sketch](https://www.theodinproject.com/lessons/foundations-etch-a-sketch) using functions, loops, and the Math module.
 
 ## Technology used
 * HTML
